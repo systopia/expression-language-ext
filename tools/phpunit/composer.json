@@ -1,0 +1,6 @@
+{
+    "require": {
+        "symfony/phpunit-bridge": "^6.1",
+        "rregeer/phpunit-coverage-check": "^0.3.1"
+    }
+}

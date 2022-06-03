@@ -1,0 +1,74 @@
+{
+    "name": "systopia/expression-language-ext",
+    "type": "library",
+    "description": "Extension for the Symfony ExpressionLanguage Component",
+    "homepage": "https://github.com/systopia/expression-language-ext",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dominic Tubach",
+            "email": "tubach@systopia.de"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8",
+        "symfony/expression-language": "^5 || ^6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Systopia\\ExpressionLanguage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Systopia\\ExpressionLanguage\\Test\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "composer-php-cs-fixer": [
+            "@composer --working-dir=tools/php-cs-fixer"
+        ],
+        "composer-phpstan": [
+            "@composer --working-dir=tools/phpstan"
+        ],
+        "composer-phpunit": [
+            "@composer --working-dir=tools/phpunit"
+        ],
+        "composer-tools": [
+            "@composer-php-cs-fixer",
+            "@composer-phpstan",
+            "@composer-phpunit"
+        ],
+        "post-install-cmd": [
+            "@composer-tools install",
+            "./tools/phpunit/vendor/bin/simple-phpunit --version >/dev/null"
+        ],
+        "post-update-cmd": [
+            "@composer-tools update",
+            "./tools/phpunit/vendor/bin/simple-phpunit --version >/dev/null"
+        ],
+        "php-cs-fixer": [
+            "@php tools/php-cs-fixer/vendor/bin/php-cs-fixer"
+        ],
+        "php-cs-fix": [
+            "@php-cs-fixer fix -v --diff"
+        ],
+        "phpstan": [
+            "@php tools/phpstan/vendor/bin/phpstan"
+        ],
+        "phpunit": [
+            "@php tools/phpunit/vendor/bin/simple-phpunit --coverage-clover clover.xml",
+            "@php tools/phpunit/vendor/bin/coverage-check clover.xml 100"
+        ],
+        "test": [
+            "@php-cs-fix --dry-run",
+            "@phpstan",
+            "@phpunit"
+        ]
+    }
+}

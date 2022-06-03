@@ -1,0 +1,26 @@
+parameters:
+	paths:
+		- src
+		- tests
+	scanFiles:
+		- tools/phpunit/vendor/bin/.phpunit/phpunit/src/Framework/TestCase.php
+	scanDirectories:
+		- tools/phpunit/vendor/bin/.phpunit/phpunit/src/Framework
+	bootstrapFiles:
+		- tools/phpunit/vendor/bin/.phpunit/phpunit/vendor/autoload.php
+	level: 8
+	checkTooWideReturnTypesInProtectedAndPublicMethods: true
+	checkUninitializedProperties: true
+	checkMissingCallableSignature: true
+	treatPhpDocTypesAsCertain: false
+	exceptions:
+		check:
+			missingCheckedExceptionInThrows: true
+			tooWideThrowType: true
+		implicitThrows: false
+	ignoreErrors:
+			-
+				message: "#^Method [^ ]+PhpFunctionsFunctionProvider::getFunctions\\(\\) throws checked exception InvalidArgumentException but it's missing from the PHPDoc @throws tag.$#"
+				paths:
+					- src/FunctionProvider/PhpFunctionsFunctionProvider.php
+	tmpDir: .phpstan
