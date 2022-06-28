@@ -45,12 +45,10 @@
             "@composer-phpunit"
         ],
         "post-install-cmd": [
-            "@composer-tools install",
-            "./tools/phpunit/vendor/bin/simple-phpunit --version >/dev/null"
+            "@composer-tools install"
         ],
         "post-update-cmd": [
-            "@composer-tools update",
-            "./tools/phpunit/vendor/bin/simple-phpunit --version >/dev/null"
+            "@composer-tools update"
         ],
         "php-cs-fixer": [
             "@php tools/php-cs-fixer/vendor/bin/php-cs-fixer"
