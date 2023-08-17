@@ -23,24 +23,24 @@
 
 declare(strict_types=1);
 
-namespace Systopia\ExpressionLanguage;
+namespace Systopia\ExpressionLanguage\FunctionProvider;
 
-use Psr\Cache\CacheItemPoolInterface;
-use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
-use Systopia\ExpressionLanguage\FunctionProvider\DateCreateExpressionFunctionProvider;
-use Systopia\ExpressionLanguage\FunctionProvider\MapExpressionFunctionProvider;
-use Systopia\ExpressionLanguage\FunctionProvider\PhpFunctionsFunctionProvider;
+use Symfony\Component\ExpressionLanguage\ExpressionFunction;
+use Symfony\Component\ExpressionLanguage\ExpressionFunctionProviderInterface;
 
-class SystopiaExpressionLanguage extends ExpressionLanguage
+final class DateCreateExpressionFunctionProvider implements ExpressionFunctionProviderInterface
 {
-    public function __construct(CacheItemPoolInterface $cache = null, array $providers = [])
+    /**
+     * {@inheritDoc}
+     */
+    public function getFunctions(): array
     {
-        $providers = array_merge([
-            new DateCreateExpressionFunctionProvider(),
-            new MapExpressionFunctionProvider($this),
-            new PhpFunctionsFunctionProvider(),
-        ], $providers);
-
-        parent::__construct($cache, $providers);
+        return [
+            new ExpressionFunction('date_create', function (string $datetime): string {
+                return sprintf('new \DateTimeImmutable(%s)', $datetime);
+            }, function ($arguments, string $datetime): \DateTimeImmutable {
+                return new \DateTimeImmutable($datetime);
+            }),
+        ];
     }
 }

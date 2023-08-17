@@ -48,6 +48,11 @@ final class SystopiaExpressionLanguageTest extends TestCase
 
     public function testCeilIsRegistered(): void
     {
-        self::assertNotEmpty($this->expressionLanguage->compile('ceil(2.3)', []));
+        self::assertNotEmpty($this->expressionLanguage->compile('ceil(2.3)'));
+    }
+
+    public function testDateCreateIsRegistered(): void
+    {
+        self::assertNotEmpty($this->expressionLanguage->compile('date_create("2000")'));
     }
 }

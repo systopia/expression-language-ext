@@ -23,24 +23,39 @@
 
 declare(strict_types=1);
 
-namespace Systopia\ExpressionLanguage;
+namespace Systopia\ExpressionLanguage\Test\FunctionProvider;
 
-use Psr\Cache\CacheItemPoolInterface;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Systopia\ExpressionLanguage\FunctionProvider\DateCreateExpressionFunctionProvider;
-use Systopia\ExpressionLanguage\FunctionProvider\MapExpressionFunctionProvider;
-use Systopia\ExpressionLanguage\FunctionProvider\PhpFunctionsFunctionProvider;
 
-class SystopiaExpressionLanguage extends ExpressionLanguage
+/**
+ * @covers \Systopia\ExpressionLanguage\FunctionProvider\DateCreateExpressionFunctionProvider
+ */
+final class DateCreateExpressionFunctionProviderTest extends TestCase
 {
-    public function __construct(CacheItemPoolInterface $cache = null, array $providers = [])
-    {
-        $providers = array_merge([
-            new DateCreateExpressionFunctionProvider(),
-            new MapExpressionFunctionProvider($this),
-            new PhpFunctionsFunctionProvider(),
-        ], $providers);
+    private ExpressionLanguage $expressionLanguage;
 
-        parent::__construct($cache, $providers);
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->expressionLanguage = new ExpressionLanguage();
+        $this->expressionLanguage->registerProvider(new DateCreateExpressionFunctionProvider());
+    }
+
+    public function testCompile(): void
+    {
+        self::assertSame(
+            'new \DateTimeImmutable("2000-01-02 03:04:05")',
+            $this->expressionLanguage->compile('date_create("2000-01-02 03:04:05")')
+        );
+    }
+
+    public function testEvaluate(): void
+    {
+        self::assertEquals(
+            new \DateTimeImmutable('2000-01-02 03:04:05'),
+            $this->expressionLanguage->evaluate('date_create("2000-01-02 03:04:05")')
+        );
     }
 }
