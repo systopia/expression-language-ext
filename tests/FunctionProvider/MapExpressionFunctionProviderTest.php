@@ -48,7 +48,7 @@ final class MapExpressionFunctionProviderTest extends TestCase
         $this->expressionLanguage->parse('map(array, "value.b")', ['array']);
 
         $compiled = $this->expressionLanguage->compile('map(array, "value.b")', ['array']);
-        static::assertSame('map($array, "value.b")', $compiled);
+        self::assertSame('map($array, "value.b")', $compiled);
     }
 
     public function testEvaluate(): void
@@ -59,7 +59,7 @@ final class MapExpressionFunctionProviderTest extends TestCase
         ];
 
         $mapped = $this->expressionLanguage->evaluate('map(array, "value.b")', ['array' => $array]);
-        static::assertSame(['fooB', 'barB'], $mapped);
+        self::assertSame(['fooB', 'barB'], $mapped);
     }
 
     public function testEvaluateWithAddition(): void
@@ -70,7 +70,7 @@ final class MapExpressionFunctionProviderTest extends TestCase
         ]);
 
         $mapped = $this->expressionLanguage->evaluate('map(array, "value.a + value.b")', ['array' => $arrayObject]);
-        static::assertSame([3, 7], $mapped);
+        self::assertSame([3, 7], $mapped);
     }
 
     public function testEvaluateWithKey(): void
@@ -81,6 +81,6 @@ final class MapExpressionFunctionProviderTest extends TestCase
         ];
 
         $mapped = $this->expressionLanguage->evaluate('map(array, "key ~ \" => \" ~ value")', ['array' => $array]);
-        static::assertSame(['a => 1', 'b => 2'], $mapped);
+        self::assertSame(['a => 1', 'b => 2'], $mapped);
     }
 }
