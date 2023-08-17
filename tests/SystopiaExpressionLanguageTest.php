@@ -43,11 +43,11 @@ final class SystopiaExpressionLanguageTest extends TestCase
 
     public function testMapIsRegistered(): void
     {
-        static::assertNotEmpty($this->expressionLanguage->compile('map(array, "value.a")', ['array']));
+        self::assertNotEmpty($this->expressionLanguage->compile('map(array, "value.a")', ['array']));
     }
 
     public function testCeilIsRegistered(): void
     {
-        static::assertNotEmpty($this->expressionLanguage->compile('ceil(2.3)', []));
+        self::assertNotEmpty($this->expressionLanguage->compile('ceil(2.3)', []));
     }
 }
