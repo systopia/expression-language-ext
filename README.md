@@ -2,8 +2,9 @@
 
 This is an extension for
 [Symfony's ExpressionLanguage component](https://symfony.com/doc/current/components/expression_language.html).
-It provides the function
-[map](./src/FunctionProvider/MapExpressionFunctionProvider.php) as well as
+It provides the functions
+[date_create](./src/FunctionProvider/DateCreateExpressionFunctionProvider.php)
+and [map](./src/FunctionProvider/MapExpressionFunctionProvider.php) as well as
 different [PHP functions](./src/FunctionProvider/PhpFunctionsFunctionProvider.php).
 For simplified use all those functions are available in the class
 [SystopiaExpressionLanguage](./src/SystopiaExpressionLanguage.php).
