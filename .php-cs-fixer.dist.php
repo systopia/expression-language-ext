@@ -15,6 +15,7 @@ return $config->setRules([
     'phpdoc_align' => ['align' => 'left'],
     'comment_to_phpdoc' => ['ignored_tags' => ['phpstan-ignore-next-line']],
     'php_unit_internal_class' => false,
+    'php_unit_strict' => false,
     'no_superfluous_phpdoc_tags' => [
         'allow_mixed' => true,
         'remove_inheritdoc' => false,

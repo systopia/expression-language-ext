@@ -8,6 +8,18 @@ different [PHP functions](./src/FunctionProvider/PhpFunctionsFunctionProvider.ph
 For simplified use all those functions are available in the class
 [SystopiaExpressionLanguage](./src/SystopiaExpressionLanguage.php).
 
+## `date_create` Function
+
+The `date_create` function creates an object of type `\DateTimeImmutable` by
+using the default constructor.
+
+Example:
+
+```php
+$expressionLanguage = new SystopiaExpressionLanguage();
+$dateTime = $expressionLanguage->evaluate('date_create("2000-01-02 03:04:05")');
+```
+
 ## `map` Function
 
 The function `map` allows to apply an expression to the values of an array
