@@ -20,6 +20,7 @@ return $config->setRules([
         'allow_mixed' => true,
         'remove_inheritdoc' => false,
     ],
+    'static_lambda' => false,
 ])
     ->setRiskyAllowed(true)
     ->setFinder($finder)
