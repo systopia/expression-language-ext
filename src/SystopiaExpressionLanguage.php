@@ -1,6 +1,7 @@
 <?php
+
 /*
- * Copyright (c) $year.today SYSTOPIA GmbH
+ * Copyright (c) 2022 SYSTOPIA GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +34,7 @@ use Systopia\ExpressionLanguage\FunctionProvider\PhpFunctionsFunctionProvider;
 
 class SystopiaExpressionLanguage extends ExpressionLanguage
 {
-    public function __construct(CacheItemPoolInterface $cache = null, array $providers = [])
+    public function __construct(?CacheItemPoolInterface $cache = null, array $providers = [])
     {
         $providers = array_merge([
             new DateCreateExpressionFunctionProvider(),
