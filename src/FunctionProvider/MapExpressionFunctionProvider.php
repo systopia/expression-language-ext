@@ -1,6 +1,7 @@
 <?php
+
 /*
- * Copyright (c) $year.today SYSTOPIA GmbH
+ * Copyright (c) 2022 SYSTOPIA GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +46,7 @@ final class MapExpressionFunctionProvider implements ExpressionFunctionProviderI
     {
         return [
             new ExpressionFunction('map', function (string $arrayName, string $expression): string {
-                return sprintf('map(%s, %s)', $arrayName, $expression);
+                return \sprintf('map(%s, %s)', $arrayName, $expression);
             }, function ($arguments, iterable $iterable, string $expression): array {
                 $mapped = [];
                 foreach ($iterable as $key => $value) {

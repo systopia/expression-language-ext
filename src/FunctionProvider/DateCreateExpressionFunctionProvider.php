@@ -1,6 +1,7 @@
 <?php
+
 /*
- * Copyright (c) $year.today SYSTOPIA GmbH
+ * Copyright (c) 2022 SYSTOPIA GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +38,7 @@ final class DateCreateExpressionFunctionProvider implements ExpressionFunctionPr
     {
         return [
             new ExpressionFunction('date_create', function (string $datetime): string {
-                return sprintf('new \DateTimeImmutable(%s)', $datetime);
+                return \sprintf('new \DateTimeImmutable(%s)', $datetime);
             }, function ($arguments, string $datetime): \DateTimeImmutable {
                 return new \DateTimeImmutable($datetime);
             }),
